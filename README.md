@@ -1,1 +1,1 @@
-# CS323-2022F Course Repo
+# CS323 2022F Course Repo
