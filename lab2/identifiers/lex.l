@@ -14,7 +14,7 @@ digit [0-9]
 {letter_}({letter_}|{digit})* { identifiers++; printf("line %d: %s\n", lines, yytext);} 
 \n {}
 [\t\r ]+ { /* does nothing when seeing white spaces except new line */ }
-. { /* a final rule that does nothing when seeing any character but new line */ }
+. { /* a final rule that matches when seeing any character but new line */ }
 <<EOF>> { printf("There are %d occurrences of valid identifiers\n", identifiers); yyterminate(); }
 
 %%
