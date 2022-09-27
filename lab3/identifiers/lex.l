@@ -9,9 +9,14 @@
 letter [a-zA-Z]
 letter_ {letter}|_
 digit [0-9]
+reserved "char"|"int"|"return"|"while"|"if"|"else"
 
 %%
-{letter_}({letter_}|{digit})* { identifiers++; printf("line %d: %s\n", lines, yytext);} 
+{reserved} {/* remove reserved word */}
+[0-9]+({letter_}|{digit})* {/*reject those start with numbers*/}
+\'.*\' {/*remove char/string*/}
+\".*\" {/*remove char/string*/}
+{letter_}({letter_}|{digit})* { identifiers++; printf("line %d: %s\n", ++lines, yytext);} 
 \n {}
 [\t\r ]+ { /* does nothing when seeing white spaces except new line */ }
 . { /* a final rule that matches when seeing any character but new line */ }

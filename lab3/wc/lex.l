@@ -10,9 +10,10 @@
     int lines = 0;
 %}
 letter [a-zA-Z]
+vowel [AaEeIiOoUu]
 
 %%
-{letter}+ { words++; chars+=strlen(yytext); }
+[AaEeIiOoUu][a-zA-Z]+ { words++; chars+=strlen(yytext); }
 \n { chars++; lines++; }
 . { chars++; }
 
