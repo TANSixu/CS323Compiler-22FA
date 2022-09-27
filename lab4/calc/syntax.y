@@ -3,7 +3,7 @@
     void yyerror(const char*);
 %}
 %token INT
-%token ADD SUB MUL DIV
+%token ADD SUB MUL DIV LP RP
 %%
 Calc: /* to allow empty input */
     | Exp { printf("= %d\n", $1); }
@@ -15,7 +15,7 @@ Exp: Factor
 Factor: Term
     | Factor MUL Term { $$ = $1 * $3; }
     | Factor DIV Term { $$ = $1 / $3; }
-Term: INT
+Term: LP Exp RP {$$ = $2;} | INT
     ;
 %%
 void yyerror(const char *s) {
