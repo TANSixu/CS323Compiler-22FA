@@ -6,7 +6,7 @@
 \"[^\"]*\" { 
   // printf("%s\n", yytext); 
   if(yytext[yyleng-2] == '\\') {
-    // if the last second char is back slash, put it back
+    // if the last second char is back slash, put the last quotation mark back to the input buffer
     yyless(yyleng-1);
     // yymore() causes the next matched token's yytext to be appended to the current yytext
     yymore();
